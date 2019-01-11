@@ -1,25 +1,24 @@
-import java.util.*;
-
 public class StockItems {
-    private UUID idNum;
+    private int idNum;
     private String name;
     private String desc;
-    private String price;
+    private double price;
+    private int quantity;
 
 
-    StockItems(String name, String desc, String price) {
-        this.idNum = UUID.randomUUID();
+    StockItems(String name, String desc, double price, int quantity) {
+        this.idNum = 0;
         this.name = name;
         this.desc = desc;
         this.price = price;
-
+        this.quantity = quantity;
     }
 
-    public UUID getIdNum() {
+    public int getIdNum() {
         return idNum;
     }
 
-    public void setIdNum(UUID idNum) {
+    public void setIdNum(int idNum) {
         this.idNum = idNum;
     }
 
@@ -39,29 +38,51 @@ public class StockItems {
         this.desc = desc;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
     public String toString() {
-        return idNum + " " + name + " " + desc + " " + price;
+        return "StockItems{" +
+                "idNum=" + idNum +
+                ", name='" + name + '\'' +
+                ", desc='" + desc + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
     }
 
     public static void main(String args[]) {
-        List stockItems = new ArrayList();
-        StockItems s1 = new StockItems("name", "Description", "some price");
-        StockItems s2 = new StockItems("name", "Description", "some price");
+        // create the stockitems
+        StockItems s1 = new StockItems("apples", "Some bullshit apples", 10.0, 10);
+        StockItems s2 = new StockItems("oranges", "Some fucking oranges", 9.0, 20);
 
-        stockItems.add(s1);
-        stockItems.add(s2);
+        // add the object
+        StockItems[] stockItemsList = {s1, s2};
+
+        s1.setIdNum(0);
+        s2.setIdNum(1);
+
+        // how to set a different price
+        s2.setPrice(11.0);
+
+        //print or getting the price
+        //System.out.println(s2.getPrice());
 
         System.out.println(s1);
         System.out.println(s2);
-        System.out.println(stockItems);
-        System.out.println("quantity: " + stockItems.size());
     }
 }
